@@ -1,5 +1,5 @@
 class Racer
-
+include ActiveModel::Model
 attr_accessor :id, :number, :first_name, :last_name, :gender, :group, :secs
 
 def self.mongo_client
@@ -85,6 +85,17 @@ def destroy
               .delete_one   
 end  
 
+def persisted? 
+  !@id.nil?
+end
+
+def created_at 
+  nil
+end
+
+def updated_at
+  nil
+end
 
 
 end
