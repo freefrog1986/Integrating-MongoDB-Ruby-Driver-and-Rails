@@ -45,7 +45,7 @@ end
 
 def self.find id
 result=collection.find(:_id=>BSON::ObjectId.from_string(id))
-.projection({number:true, first_name:true, last_name:true, gender:true,group:true,secs:true})
+.projection({number:true, first_name:true, last_name:true, gender:true, group:true,secs:true})
 .first
 return result.nil? ? nil : Racer.new(result)
 end
@@ -69,9 +69,10 @@ def update(params)
     # self.class.collection
 		  #   .find({first_name:@first_name,last_name:@last_name})
 		  #   .update_one(:$set=>params)
+
 		  self.class.collection
-		  .find(:_id=>BSON::ObjectId.from_string(@id))
-		  .update_one(:$set=>params)
+		  .find(_id: BSON::ObjectId.from_string(@id))
+		  .update_one(params)
 
 		    # pp self.class.collection
 		    # .find(@first_name)
